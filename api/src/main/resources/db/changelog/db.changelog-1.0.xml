@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet author="BusStations" id="changelog-1.0">
+
+    <createTable tableName="bus">
+      <column name="id" type="BIGINT(11)" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(60)" encoding="UTF-8"/>
+    </createTable>
+
+    <createTable tableName="bus_station">
+      <column name="id" type="BIGINT(11)" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(120)" encoding="UTF-8"/>
+      <column name="longitude" type="VARCHAR(20)" encoding="UTF-8"/>
+      <column name="latitude" type="VARCHAR(20)" encoding="UTF-8"/>
+    </createTable>
+
+    <createTable tableName="bus_network">
+      <column name="bus_id" type="BIGINT(11)"/>
+      <column name="bus_station_id" type="BIGINT(11)"/>
+    </createTable>
+
+    <addPrimaryKey columnNames="bus_id, bus_station_id"
+                   constraintName="pk_bus_networks"
+                   tableName="bus_network"/>
+
+    <createTable tableName="data_info">
+      <column name="id" type="BIGINT(11)" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="data_hash" type="VARCHAR(255)" encoding="UTF-8"/>
+      <column name="updated_on" type="TIMESTAMP"/>
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="bus_network"
+                             baseColumnNames="bus_id"
+                             constraintName="fk_bus"
+                             referencedTableName="bus"
+                             referencedColumnNames="id"/>
+
+    <addForeignKeyConstraint baseTableName="bus_network"
+                             baseColumnNames="bus_station_id"
+                             constraintName="fk_bus_station"
+                             referencedTableName="bus_station"
+                             referencedColumnNames="id"/>
+
+  </changeSet>
+
+</databaseChangeLog>

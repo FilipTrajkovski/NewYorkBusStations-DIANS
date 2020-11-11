@@ -48,6 +48,12 @@
             <version>6.0.13.Final</version>
         </dependency>
 
+        <!-- Used for DB Migrations -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
