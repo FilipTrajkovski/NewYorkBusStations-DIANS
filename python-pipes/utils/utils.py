@@ -22,7 +22,6 @@ def load_db_config():
 
         # Checks if all the required data in the configuration is not missing
         assert config["DB_CONFIG"]
-        assert config["DB_CONFIG"]["DB_SCHEMA"]
         assert config["DB_CONFIG"]["DB_HOST"]
         assert config["DB_CONFIG"]["DB_USER"]
         assert config["DB_CONFIG"]["DB_PASSWORD"]
@@ -51,7 +50,6 @@ def get_db_connection():
             user=config["DB_USER"],
             password=config["DB_PASSWORD"],
             host=config["DB_HOST"],
-            database=config["DB_SCHEMA"],
             port=config["DB_PORT"]
         )
 
@@ -86,6 +84,9 @@ def execute_sql_file(connection, sql_script_name):
             print("Command issue: ", exception)
             exit(-1)
 
+    # Use the newly generated schema
+    cursor.execute("USE buses")
+
 
 # Saves the open street map data filtered by the provided `params` into the provided `file_name`
 def save_osm_data(params, file_name):
@@ -110,7 +111,7 @@ def is_csv_data_already_imported(connection, csv_data):
     cursor = connection.cursor()
 
     print("Checking if previous data exists and if it's outdated")
-    get_latest_hash_query = "SELECT di.data_hash FROM data_info AS di ORDER BY di.updated_on DESC LIMIT 1"
+    get_latest_hash_query = "SELECT di.data_hash FROM buses.data_info AS di ORDER BY di.updated_on DESC LIMIT 1"
 
     cursor.execute(get_latest_hash_query)
 
@@ -165,7 +166,7 @@ def __escape_string(string_to_escape):
 def insert_data_info_row(connection, csv_data):
     cursor = connection.cursor()
 
-    insert_data_info_row_query = "INSERT INTO data_info(data_hash) VALUES ('%s')"
+    insert_data_info_row_query = "INSERT INTO buses.data_info(data_hash) VALUES ('%s')"
 
     data_hash = sha1(csv_data.encode()).hexdigest()
 
@@ -180,10 +181,10 @@ def dump_csv_data_to_db(connection, csv_data):
     cursor = connection.cursor()
 
     print("Dumping csv data into database")
-    insert_bus_station_query = "INSERT INTO bus_station(name, longitude, latitude) VALUES ('%s', '%s', '%s')"
-    insert_bus_query = "INSERT INTO bus(name) VALUES ('%s')"
-    insert_bus_network_query = "INSERT INTO bus_network(bus_id, bus_station_id) VALUES ('%s', '%s')"
-    get_bus_query = "SELECT bus.id FROM bus WHERE bus.name = '%s' LIMIT 1"
+    insert_bus_station_query = "INSERT INTO buses.bus_station(name, longitude, latitude) VALUES ('%s', '%s', '%s')"
+    insert_bus_query = "INSERT INTO buses.bus(name) VALUES ('%s')"
+    insert_bus_network_query = "INSERT INTO buses.bus_network(bus_id, bus_station_id) VALUES ('%s', '%s')"
+    get_bus_query = "SELECT bus.id FROM buses.bus WHERE bus.name = '%s' LIMIT 1"
 
     longitude_column_index = 1
     latitude_column_index = 2
