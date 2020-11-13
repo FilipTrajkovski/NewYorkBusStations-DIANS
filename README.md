@@ -7,6 +7,7 @@ Instructions on how to run the python pipe scritpt and requrements:
 - Requirements:
   - Python 3.7 or higher
   - Pip package manager
+  - Mysql database
 - Nagivate to the python-pipes directory
 - Install the required packages for the python script to work (<code>pip install -r requirements.txt</code>)
 - Fill db connection params in the <code>db.ini</code> file
