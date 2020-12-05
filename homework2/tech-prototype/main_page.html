@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Proof of contept</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.d-none {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row" style="position: absolute; top: 50%; left: 45%;">
+				<div id="select-options" class="col-md-12">
+					<select class="form-control selectpicker" placeholder="Search bus station or bus" type="text" name="search" data-live-search="true">
+						<option value="bus1" data-tokens="bus 1">Bus 1</option>
+						<option value="busStation1" data-tokens="bus station 1">Bus station 1</option>
+						<option value="busStation2" data-tokens="bus station 2">Bus station 2</option>
+						<option value="bus2" data-tokens="bus 2">Bus 2</option>
+					</select>
+				</div>
+				<div id="submit-button" class="col-md-12" style="margin-top: 0.5rem;">
+					<button id="search-option" class="btn btn-primary" style="width: 100%">Submit</button>
+				</div>
+				<div id="result-list" class="d-none col-md-12">
+					<h2 id="selected-value"></h2>
+					<div id="stations" class="row d-none">
+						<div class="col-md-6">
+							<div class="list-group">
+							  <a href="#" class="list-group-item list-group-item-action active">Bus station 1</a>
+							  <a href="#" class="list-group-item list-group-item-action">Bus station 2</a>
+							  <a href="#" class="list-group-item list-group-item-action">Bus station 3</a>
+							  <a href="#" class="list-group-item list-group-item-action">Bus station 4</a>
+							  <a href="#" class="list-group-item list-group-item-action">Bus station 5</a>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<img src="new_york_state_map.jpg" width="200" height="200" />
+						</div>
+					</div>
+					<div id="buses" class="row d-none">
+						<div class="col-md-6">
+							<div class="list-group">
+							  <a href="#" class="list-group-item list-group-item-action active">Bus 1</a>
+							  <a href="#" class="list-group-item list-group-item-action">Bus 2</a>
+							  <a href="#" class="list-group-item list-group-item-action">Bus 3</a>
+							  <a href="#" class="list-group-item list-group-item-action">Bus 4</a>
+							  <a href="#" class="list-group-item list-group-item-action">Bus 5</a>
+							</div>
+						</div>
+						<div class="col-md-6">
+								<img src="new_york_state_map.jpg" width="200" height="200" />
+							</div>
+					</div>
+					<button id="back-to-search" class="btn btn-primary">Back to search</button>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function () {
+				$('.selectpicker').selectpicker();
+
+				$('#search-option').on('click', function() {
+
+					const selectedValue = $('.selectpicker').val();
+					const selectedText = $('.selectpicker option:selected').text();
+
+					$('#result-list').removeClass('d-none');
+					$('#select-options').addClass('d-none');
+					$('#submit-button').addClass('d-none');
+
+					if (selectedValue === "bus1" || selectedValue === "bus2") {
+						$('#stations').removeClass('d-none');
+					} else {
+						$('#buses').removeClass('d-none');
+					}
+
+					$('#selected-value').text("Showing values for: " + selectedText);
+				});
+
+				$('#back-to-search').on('click', function() {
+					$('#stations').addClass('d-none');
+					$('#buses').addClass('d-none');
+					$('#result-list').addClass('d-none');
+					$('#select-options').removeClass('d-none');
+					$('#submit-button').removeClass('d-none');
+				});
+
+				$('.list-group-item-action').on('click', function() {
+					$('.list-group-item-action').removeClass("active");
+					$(this).addClass("active");
+				});
+			});
+		</script>
+	</body>
+</html>
