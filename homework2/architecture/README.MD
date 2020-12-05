@@ -20,5 +20,5 @@ The application will also use the following modules:
 
 ## Frontend structure
 This group represents the look of the application and it's navigation through it. It's sub-groups consist of:
-- View component (React component that contains the view of a certain view group)
+- View component (React component containing the view of a certain view group)
 - Typescript services (Service files containing the communication logic between the react components and the backend endpoints)
