@@ -1,6 +1,6 @@
 ### Homework Part 1: Pipe for initializing the database and filling it with data
 
-Instructions on how to run the python pipe scritpt and requrements:
+Instructions on how to run the python pipe script and requrements:
 - Requirements:
   - Python 3.7 or higher
   - Pip package manager
