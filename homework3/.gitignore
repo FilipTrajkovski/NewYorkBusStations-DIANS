@@ -73,12 +73,3 @@ fabric.properties
 
 modules.xml
 .idea/misc.xml
-
-### Python Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
