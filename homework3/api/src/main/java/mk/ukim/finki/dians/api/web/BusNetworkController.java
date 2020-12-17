@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/bus-networks")
+@RequestMapping(path = "/api/bus-networks")
 public class BusNetworkController {
 
     private final BusNetworkService busNetworkService;

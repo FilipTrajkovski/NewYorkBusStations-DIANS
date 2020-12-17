@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/bus-stations")
+@RequestMapping(path = "/api/bus-stations")
 public class BusStationController {
 
     private final BusStationService busStationService;
