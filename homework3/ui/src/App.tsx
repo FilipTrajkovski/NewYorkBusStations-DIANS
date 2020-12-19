@@ -3,6 +3,7 @@ import './App.css';
 import backgroundImage from "./assets/background.jpg";
 import { Route, Switch } from "react-router";
 import SearchPage from "./components/SearchPage";
+import ResultsPage from "./components/ResultsPage";
 
 class App extends Component<{}, {}> {
   render() {
@@ -15,6 +16,7 @@ class App extends Component<{}, {}> {
              }}
         >
             <Switch>
+                <Route path="/results" component={ResultsPage} />
                 <Route path="/" component={SearchPage} />
             </Switch>
         </div>

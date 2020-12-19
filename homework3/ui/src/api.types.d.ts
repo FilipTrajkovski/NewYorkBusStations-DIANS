@@ -28,3 +28,8 @@ export interface DropdownOption {
     text: string,
     value: number|string
 }
+
+export interface SearchResponse {
+    buses: Array<BusDto>,
+    busStations: Array<BusStationDto>
+}
