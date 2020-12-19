@@ -9,10 +9,12 @@ import mk.ukim.finki.dians.api.model.BusStation;
 import mk.ukim.finki.dians.api.repository.BusNetworkRepository;
 import mk.ukim.finki.dians.api.rest.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+import static org.springframework.util.StringUtils.isEmpty;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +36,11 @@ public class BusNetworkService {
                 .map(BusNetwork::getBusStationId)
                 .collect(toList());
 
-        List<BusStation> busStations = busStationService.getBusStationsByIdIn(busStationIds);
+        List<BusStation> busStations = busStationService
+                .getBusStationsByIdIn(busStationIds)
+                .stream()
+                .filter(busStation -> !isEmpty(busStation.getName()))
+                .collect(toList());
 
         BusDto busDto = BusMapper.toDto(bus);
         List<BusStationDto> busStationDtos = BusStationMapper.toDtoList(busStations);
@@ -58,7 +64,11 @@ public class BusNetworkService {
                 .map(BusNetwork::getBusId)
                 .collect(toList());
 
-        List<Bus> buses = busService.getBusesByIdIn(busIds);
+        List<Bus> buses = busService
+                .getBusesByIdIn(busIds)
+                .stream()
+                .filter(bus -> !isEmpty(bus.getName()))
+                .collect(toList());
 
         BusStationDto busStationDto = BusStationMapper.toDto(busStation);
         List<BusDto> busDtos = BusMapper.toDtoList(buses);
