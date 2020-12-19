@@ -22,3 +22,9 @@ export interface BusStationConnectionDto {
     busStation: BusStationDto,
     buses: Array<BusDto>
 }
+
+export interface DropdownOption {
+    key: number|string,
+    text: string,
+    value: number|string
+}

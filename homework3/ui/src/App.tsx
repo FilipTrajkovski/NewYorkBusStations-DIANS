@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import backgroundImage from "./assets/background.jpg";
+import { Route, Switch } from "react-router";
+import SearchPage from "./components/SearchPage";
 
 class App extends Component<{}, {}> {
   render() {
@@ -12,6 +14,9 @@ class App extends Component<{}, {}> {
                  height: "100vh"
              }}
         >
+            <Switch>
+                <Route path="/" component={SearchPage} />
+            </Switch>
         </div>
     );
   }

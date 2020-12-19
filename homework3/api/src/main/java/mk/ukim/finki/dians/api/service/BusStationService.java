@@ -6,8 +6,13 @@ import mk.ukim.finki.dians.api.model.BusStation;
 import mk.ukim.finki.dians.api.repository.BusStationRepository;
 import mk.ukim.finki.dians.api.rest.BusStationDto;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
+import static org.springframework.util.StringUtils.isEmpty;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +22,15 @@ public class BusStationService {
 
     public List<BusStationDto> getAllBusStations() {
         List<BusStation> busStations = busStationRepository.findAll();
+
+        busStations = busStations
+                .stream()
+                .filter(busStation -> {
+                    String name = busStation.getName();
+
+                    return !isEmpty(name);
+                })
+                .collect(toList());
 
         return BusStationMapper.toDtoList(busStations);
     }
