@@ -22,5 +22,7 @@ Navigate to the `homework2` folder for further instructions.
 Navigate to the `homework3` folder for the structure of the implemented app.
 
 The app is deployed using heroku and it is currently running on: https://boiling-fortress-42885.herokuapp.com/
+
 Examples for bus: B61, B57, B41
+
 Examples for bus stations: Castle Hill Avenue & Bruckner Boulevard, Farmers Boulevard & 133rd Road
