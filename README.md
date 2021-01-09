@@ -26,3 +26,9 @@ The app is deployed using heroku and it is currently running on: https://boiling
 Examples for bus: B61, B57, B41
 
 Examples for bus stations: Castle Hill Avenue & Bruckner Boulevard, Farmers Boulevard & 133rd Road
+
+### Homework Part 4: Docker containerization and AWS deployment
+
+Go to the `homework3` folder and in the respective `api/ui` to see the docker build files.
+
+The application is currently running on an AWS EC2 container on the url: http://ec2-34-201-243-63.compute-1.amazonaws.com/
