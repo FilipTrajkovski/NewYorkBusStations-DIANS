@@ -31,4 +31,4 @@ Examples for bus stations: Castle Hill Avenue & Bruckner Boulevard, Farmers Boul
 
 Go to the `homework3` folder and in the respective `api/ui` to see the docker build files.
 
-The application is currently running on an AWS EC2 container on the url: http://ec2-34-201-243-63.compute-1.amazonaws.com/
+The application is currently running on an AWS EC2 container on the url: http://ec2-34-201-243-63.compute-1.amazonaws.com/ (Outdated, no loger works due to no more free credits to use on EC2 containers)
